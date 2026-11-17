@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Wedding of Daniel & Devi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-black: #04070E;
+            --navy-dark: #0A1326;
+            --navy-mid: #132342;
+            --silver-light: #E2E8F0;
+            --silver-mid: #94A3B8;
+            --silver-metallic: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 45%, #94A3B8 75%, #F8FAFC 100%);
+            --pure-white: #FFFFFF;
+            --card-border: rgba(203, 213, 225, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #020408;
+            color: var(--pure-white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body.locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Mobile Frame Container */
+        .app-shell {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--bg-black) 0%, var(--navy-dark) 22%, var(--navy-mid) 50%, var(--navy-dark) 78%, var(--bg-black) 100%);
+            position: relative;
+            box-shadow: 0 0 55px rgba(0, 0, 0, 0.95);
+            border-left: 1px solid rgba(255,255,255,0.08);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            overflow-x: hidden;
+        }
+
+        /* Subtle Starry Glitter Texture */
+        .app-shell::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 0);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Typography */
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-serif-editorial { font-family: 'Cormorant Garamond', serif; }
+        .font-handwriting { font-family: 'Caveat', cursive; }
+
+        .silver-text {
+            background: var(--silver-metallic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Aesthetic Floral SVG Decorations */
+        .floral-corner-tl {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 150px;
+            opacity: 0.82;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .floral-corner-br {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 150px;
+            opacity: 0.82;
+            transform: rotate(180deg);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .floral-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0 22px 0;
+            opacity: 0.88;
+        }
+
+        /* Floating Petals Animation */
+        .petal {
+            position: fixed;
+            top: -20px;
+            width: 10px;
+            height: 14px;
+            background: radial-gradient(circle, rgba(255,255,255,0.85), rgba(148,163,184,0.4));
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 30;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.8; }
+            50% { transform: translateY(50vh) rotate(180deg) translateX(18px); opacity: 0.5; }
+            100% { transform: translateY(105vh) rotate(360deg) translateX(-12px); opacity: 0; }
+        }
+
+        /* Section Styling */
+        .section-block {
+            position: relative;
+            padding: 56px 22px;
+            z-index: 3;
+            border-bottom: 1px solid rgba(203, 213, 225, 0.08);
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           1. COVER SECTION (DENGAN ARCH FRAME & WAX SEAL SILVER)
+           ========================================================= */
+        #sec-cover {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            height: 100dvh;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(4,7,14,0.6) 0%, rgba(10,19,38,0.88) 65%, #04070E 100%),
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') center/cover;
+            z-index: 40;
+            transition: transform 0.95s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.85s ease;
+        }
+        #sec-cover.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover-arch {
+            width: 175px;
+            height: 225px;
+            border-radius: 100px 100px 12px 12px;
+            border: 2px solid var(--silver-light);
+            padding: 5px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.75);
+            margin: 10px auto;
+            position: relative;
+        }
+        .cover-arch img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 94px 94px 8px 8px;
+        }
+
+        /* Wax Seal Button */
+        .wax-seal-btn {
+            background: var(--silver-metallic);
+            color: var(--bg-black);
+            border: 3px double var(--navy-dark);
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 0 25px rgba(226, 232, 240, 0.35);
+            animation: pulseSeal 2.2s infinite;
+            width: 100%;
+        }
+        @keyframes pulseSeal {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* Glass / Navy Editorial Cards */
+        .glass-card {
+            background: rgba(10, 19, 38, 0.68);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 22px 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver-mid);
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.55rem;
+            line-height: 1.3;
+        }
+
+        /* Polaroid / Scrapbook Cards */
+        .polaroid {
+            background: var(--pure-white);
+            color: var(--bg-black);
+            padding: 10px 10px 24px 10px;
+            border-radius: 4px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        .polaroid img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+        .polaroid-caption {
+            font-family: 'Caveat', cursive;
+            font-size: 1.25rem;
+            color: var(--navy-dark);
+            text-align: center;
+            margin-top: 8px;
+        }
+        .washi-tape {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 85px;
+            height: 22px;
+            background: rgba(203, 213, 225, 0.55);
+            backdrop-filter: blur(4px);
+            border-left: 1px dashed rgba(255,255,255,0.5);
+            border-right: 1px dashed rgba(255,255,255,0.5);
+        }
+
+        /* Buttons */
+        .btn-silver {
+            background: var(--silver-metallic);
+            color: var(--bg-black);
+            border: none;
+            padding: 13px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 18px rgba(226, 232, 240, 0.25);
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+        .btn-silver:active { transform: scale(0.96); }
+
+        .btn-outline {
+            background: rgba(6, 9, 17, 0.75);
+            color: var(--pure-white);
+            border: 1px solid var(--silver-mid);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+            padding-bottom: 20px;
+            border-left: 1px solid var(--silver-mid);
+        }
+        .timeline-item:last-child { border-left: 1px solid transparent; padding-bottom: 0; }
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 3px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--pure-white);
+            box-shadow: 0 0 10px var(--pure-white);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .gallery-grid .polaroid:nth-child(odd) { transform: rotate(-2deg); }
+        .gallery-grid .polaroid:nth-child(even) { transform: rotate(2deg); margin-top: 14px; }
+        .gallery-grid .polaroid img { height: 145px; }
+
+        /* Inputs */
+        input, textarea, select {
+            width: 100%;
+            background: rgba(5, 8, 16, 0.85);
+            border: 1px solid var(--card-border);
+            color: var(--pure-white);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--pure-white);
+        }
+
+        /* Wishes List */
+        .wishes-list {
+            max-height: 270px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 14px;
+            padding-right: 4px;
+        }
+        .wish-item {
+            background: rgba(5, 8, 16, 0.72);
+            border-left: 3px solid var(--silver-light);
+            padding: 11px 13px;
+            border-radius: 10px;
+        }
+
+        /* Top Floating Controls */
+        .top-controls {
+            position: fixed;
+            top: 16px;
+            right: max(16px, calc(50% - 199px));
+            z-index: 45;
+            display: flex;
+            gap: 8px;
+        }
+        .icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(10, 19, 38, 0.88);
+            border: 1px solid var(--silver-mid);
+            color: var(--pure-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .spin { animation: spin 6s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Modal Client Link Generator */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 4, 8, 0.94);
+            backdrop-filter: blur(10px);
+            z-index: 60;
+            display: none;
+            justify-content: center;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 66px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-white);
+            color: var(--bg-black);
+            padding: 9px 20px;
+            border-radius: 24px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            z-index: 70;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+        .toast.show { opacity: 1; }
+
+        /* Scroll Down Indicator */
+        .scroll-hint {
+            text-align: center;
+            font-size: 0.72rem;
+            color: var(--silver-mid);
+            margin-top: 12px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+    </style>
+</head>
+<body class="locked">
+
+<!-- SVG Floral Template -->
+<svg style="display: none;">
+    <defs>
+        <g id="silver-floral-corner">
+            <path d="M10,120 Q35,65 115,15" stroke="#94A3B8" stroke-width="1.5" fill="none"/>
+            <path d="M25,95 Q10,65 30,45 Q45,65 25,95 Z" fill="#1E3A5F" stroke="#CBD5E1" stroke-width="0.8"/>
+            <path d="M55,65 Q40,35 65,20 Q78,40 55,65 Z" fill="#0F172A" stroke="#E2E8F0" stroke-width="0.8"/>
+            <path d="M45,85 Q75,85 88,65 Q68,55 45,85 Z" fill="#1E3A5F" stroke="#CBD5E1" stroke-width="0.8"/>
+            <path d="M78,45 Q105,48 118,30 Q98,20 78,45 Z" fill="#334155" stroke="#F8FAFC" stroke-width="0.8"/>
+            <circle cx="38" cy="42" r="16" fill="#E2E8F0" opacity="0.9"/>
+            <circle cx="38" cy="42" r="11" fill="#FFFFFF"/>
+            <path d="M31,42 Q38,32 45,42 Q38,50 31,42 Z" fill="none" stroke="#64748B" stroke-width="1"/>
+            <circle cx="72" cy="24" r="12" fill="#CBD5E1"/>
+            <circle cx="72" cy="24" r="7" fill="#FFFFFF"/>
+            <circle cx="18" cy="75" r="10" fill="#94A3B8"/>
+            <circle cx="18" cy="75" r="5" fill="#F8FAFC"/>
+            <circle cx="95" cy="18" r="2.5" fill="#FFFFFF"/>
+            <circle cx="62" cy="78" r="2" fill="#CBD5E1"/>
+            <circle cx="22" cy="108" r="2.5" fill="#E2E8F0"/>
+        </g>
+
+        <g id="floral-line-divider">
+            <line x1="0" y1="15" x2="95" y2="15" stroke="url(#gradSilver)" stroke-width="1"/>
+            <path d="M105,15 Q115,3 125,15 Q115,27 105,15 Z" fill="#E2E8F0"/>
+            <circle cx="115" cy="15" r="3" fill="#0A1326"/>
+            <path d="M97,15 Q102,8 106,15 Q102,22 97,15 Z" fill="#94A3B8"/>
+            <path d="M124,15 Q128,8 133,15 Q128,22 124,15 Z" fill="#94A3B8"/>
+            <line x1="135" y1="15" x2="230" y2="15" stroke="url(#gradSilver)" stroke-width="1"/>
+            <linearGradient id="gradSilver" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent"/>
+                <stop offset="50%" stop-color="#CBD5E1"/>
+                <stop offset="100%" stop-color="transparent"/>
+            </linearGradient>
+        </g>
+    </defs>
+</svg>
+
+<div class="app-shell">
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Berhasil disalin!</div>
+
+    <!-- Top Floating Controls (Panel Client & Musik) -->
+    <div class="top-controls">
+<button class="icon-circle" id="client-panel-btn" style="display: none;" onclick="toggleClientModal()" title="Panel Client: Buat Link Tamu">            <i class="fa-solid fa-user-plus"></i>
+        </button>
+        <button class="icon-circle" id="music-btn" onclick="toggleMusic()" title="Putar/Jeda Musik">
+            <i class="fa-solid fa-compact-disc" id="music-icon"></i>
+        </button>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3">
+    </audio>
+
+    <!-- =====================================================================
+         1. COVER (SAMPUL UTAMA)
+         ===================================================================== -->
+    <section id="sec-cover">
+        <svg class="floral-corner-tl" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+        <svg class="floral-corner-br" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div style="margin-top: 24px; position: relative; z-index: 5;">
+            <p style="font-size: 0.7rem; letter-spacing: 4px; color: var(--silver-light);">THE WEDDING OF</p>
+            <h1 class="font-cinzel silver-text" style="font-size: 2.3rem; margin: 6px 0;">Daniel & Devi</h1>
+            <p class="font-serif-editorial" style="font-style: italic; font-size: 1.1rem; color: var(--silver-light);">Kamis, 27 Mei 2027</p>
+        </div>
+
+        <div class="cover-arch" style="z-index: 5;">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Cover Couple">
+        </div>
+
+        <div class="glass-card" style="background: rgba(4, 7, 14, 0.85); margin-bottom: 6px; width: 100%; z-index: 5;">
+            <p style="font-size: 0.74rem; color: var(--silver-mid); margin-bottom: 4px;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <h2 id="guest-name-display" class="font-serif-editorial" style="font-size: 1.55rem; color: var(--pure-white); margin-bottom: 12px;">Tamu Undangan Spesial</h2>
+            <button class="wax-seal-btn" onclick="openInvitation()">
+                <i class="fa-solid fa-envelope-open-text"></i> Buka Undangan
+            </button>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         2. DOA DAN RASA SYUKUR
+         ===================================================================== -->
+    <section class="section-block" id="sec-doa">
+        <svg class="floral-corner-tl" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div class="section-header reveal">
+            <span class="section-badge">Rasa Syukur</span>
+            <h2 class="section-title silver-text">Bismillahirrahmanirrahim</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="polaroid reveal" style="transform: rotate(-1.5deg); margin-bottom: 24px;">
+            <div class="washi-tape"></div>
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80" alt="Prewedding">
+            <div class="polaroid-caption">"Dan di antara tanda-tanda kekuasaan-Nya..."</div>
+        </div>
+
+        <div class="glass-card reveal" style="text-align: center;">
+            <p class="font-serif-editorial" style="font-size: 1.22rem; line-height: 1.65; color: var(--pure-white); margin-bottom: 12px;">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+            </p>
+            <p style="font-size: 0.78rem; color: var(--silver-mid); font-weight: 600;">— QS. Ar-Rum: 21 —</p>
+        </div>
+
+        <p class="reveal" style="font-size: 0.84rem; line-height: 1.7; color: var(--silver-light); text-align: center;">
+            Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
+            Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami yang penuh rasa syukur dan kebahagiaan.
+        </p>
+
+        <div class="scroll-hint"><i class="fa-solid fa-angles-down"></i> Gulir ke bawah</div>
+    </section>
+
+    <!-- =====================================================================
+         3. IDENTITAS GROOM & BRIDE SERTA ORANG TUA
+         ===================================================================== -->
+    <section class="section-block" id="sec-mempelai">
+        <div class="section-header reveal">
+            <span class="section-badge">Mempelai</span>
+            <h2 class="section-title silver-text">Groom & Bride</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <!-- Groom -->
+        <div class="glass-card reveal" style="display: flex; gap: 14px; align-items: center;">
+            <img src="" alt="Groom" style="width: 85px; height: 110px; object-fit: cover; border-radius: 12px; border: 1px solid var(--silver-light);">
+            <div>
+                <span style="font-size: 0.68rem; letter-spacing: 2px; color: var(--silver-mid);">THE GROOM</span>
+                <h3 class="font-serif-editorial" style="font-size: 1.38rem; margin: 2px 0;">Daniel</h3>
+                <p style="font-size: 0.76rem; color: var(--silver-light); line-height: 1.55;">
+                    Putra Pertama dari:<br>
+                    <strong>Bpk (nama bapaknya)</strong><br>& <strong>Ibu (nama maknya)</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="reveal" style="text-align: center; margin: -4px 0 12px 0;">
+            <span class="font-cinzel silver-text" style="font-size: 1.65rem;">&</span>
+        </div>
+
+        <!-- Bride -->
+        <div class="glass-card reveal" style="display: flex; gap: 14px; align-items: center;">
+            <img src="" alt="Bride" style="width: 85px; height: 110px; object-fit: cover; border-radius: 12px; border: 1px solid var(--silver-light);">
+            <div>
+                <span style="font-size: 0.68rem; letter-spacing: 2px; color: var(--silver-mid);">THE BRIDE</span>
+                <h3 class="font-serif-editorial" style="font-size: 1.38rem; margin: 2px 0;">Devi Sri Nofita</h3>
+                <p style="font-size: 0.76rem; color: var(--silver-light); line-height: 1.55;">
+                    Putri Kedua dari:<br>
+                    <strong>Bpk Karno</strong><br>& <strong>Ibu Sriatin</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         4. LOVE STORY
+         ===================================================================== -->
+    <section class="section-block" id="sec-story">
+        <svg class="floral-corner-br" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div class="section-header reveal">
+            <span class="section-badge">Kisah Kami</span>
+            <h2 class="section-title silver-text">Our Love Story</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="glass-card reveal">
+            <span class="font-handwriting" style="font-size: 1.4rem; color: var(--pure-white);">2022 — Awal Pertemuan</span>
+            <p style="font-size: 0.82rem; color: var(--silver-light); line-height: 1.6; margin-top: 4px;">
+                Pertemuan sederhana di sebuah acara seminar kampus di Batam menjadi titik awal percakapan panjang yang tak pernah kami duga sebelumnya.
+            </p>
+        </div>
+
+        <div class="glass-card reveal">
+            <span class="font-handwriting" style="font-size: 1.4rem; color: var(--pure-white);">2024 — Saling Menguatkan</span>
+            <p style="font-size: 0.82rem; color: var(--silver-light); line-height: 1.6; margin-top: 4px;">
+                Melewati berbagai fase kehidupan, tugas akhir, hingga merintis karier bersama membuat kami yakin bahwa rumah terbaik adalah saling membersamai.
+            </p>
+        </div>
+
+        <div class="glass-card reveal">
+            <span class="font-handwriting" style="font-size: 1.4rem; color: var(--pure-white);">2026 — Khitbah & Menuju Halal</span>
+            <p style="font-size: 0.82rem; color: var(--silver-light); line-height: 1.6; margin-top: 4px;">
+                Dengan restu kedua orang tua, kami mengikat janji suci untuk melangkah menuju ibadah terpanjang dalam hidup kami.
+            </p>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         5. TANGGAL AKAD DAN TANGGAL RESEPSI
+         ===================================================================== -->
+    <section class="section-block" id="sec-tanggal">
+        <div class="section-header reveal">
+            <span class="section-badge">Waktu Acara</span>
+            <h2 class="section-title silver-text">Akad & Resepsi</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <!-- Hitung Mundur -->
+        <div class="glass-card reveal" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; padding: 14px;">
+            <div><strong id="cd-days" style="font-size: 1.3rem;">00</strong><br><span style="font-size: 0.65rem; color: var(--silver-mid);">Hari</span></div>
+            <div><strong id="cd-hours" style="font-size: 1.3rem;">00</strong><br><span style="font-size: 0.65rem; color: var(--silver-mid);">Jam</span></div>
+            <div><strong id="cd-mins" style="font-size: 1.3rem;">00</strong><br><span style="font-size: 0.65rem; color: var(--silver-mid);">Menit</span></div>
+            <div><strong id="cd-secs" style="font-size: 1.3rem;">00</strong><br><span style="font-size: 0.65rem; color: var(--silver-mid);">Detik</span></div>
+        </div>
+
+        <!-- Akad Nikah -->
+        <div class="glass-card reveal" style="text-align: center;">
+            <i class="fa-solid fa-ring" style="color: var(--silver-light); font-size: 1.25rem; margin-bottom: 8px;"></i>
+            <h3 class="font-cinzel" style="font-size: 1.2rem;">Akad Nikah</h3>
+            <p style="font-size: 0.88rem; color: var(--pure-white); font-weight: 600; margin: 6px 0;">Rabu, 26 Mei 2027</p>
+            <p style="font-size: 0.8rem; color: var(--silver-mid);">Pukul 08.00 – 10.00 WIB</p>
+            <p style="font-size: 0.78rem; color: var(--silver-light); margin-top: 8px;">Kediaman Mempelai Wanita</p>
+        </div>
+
+        <!-- Resepsi -->
+        <div class="glass-card reveal" style="text-align: center;">
+            <i class="fa-solid fa-champagne-glasses" style="color: var(--silver-light); font-size: 1.25rem; margin-bottom: 8px;"></i>
+            <h3 class="font-cinzel" style="font-size: 1.2rem;">Resepsi Pernikahan</h3>
+            <p style="font-size: 0.88rem; color: var(--pure-white); font-weight: 600; margin: 6px 0;">Kamis, 27 Mei 2027</p>
+            <p style="font-size: 0.8rem; color: var(--silver-mid);">Pukul 11.00 – 15.00 WIB</p>
+            <p style="font-size: 0.78rem; color: var(--silver-light); margin-top: 8px;">Kediaman Mempelai Wanita</p>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         6. TURUT MENGUNDANG (KELUARGA BESAR)
+         ===================================================================== -->
+    <section class="section-block" id="sec-keluarga">
+        <svg class="floral-corner-tl" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div class="section-header reveal">
+            <span class="section-badge">Keluarga Besar</span>
+            <h2 class="section-title silver-text">Turut Mengundang</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="glass-card reveal">
+            <h4 style="font-size: 0.82rem; color: var(--silver-mid); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Keluarga Besar Mempelai Pria</h4>
+            <ul style="font-size: 0.8rem; color: var(--silver-light); line-height: 1.75; padding-left: 18px; margin-bottom: 16px;">
+                <li>Keluarga Besar Bpk. (nanti keluarga Daniel)</li>
+                
+
+            </ul>
+
+            <h4 style="font-size: 0.82rem; color: var(--silver-mid); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Keluarga Besar Mempelai Wanita</h4>
+            <ul style="font-size: 0.8rem; color: var(--silver-light); line-height: 1.75; padding-left: 18px;">
+                <li>Keluarga Besar Bpk. Abdul Pathuddin & Ibu Purwanti</li>
+                <li>Keluarga Besar Bpk. (Alm) Asep M. Syahputra & Ibu Purwanti</li>
+                <li>Keluarga Besar Bpk. Hendriadi & Ibu Rosdiati</li>
+                <li>Keluarga Besar Bpk. Pujiono & Ibu Yusminar</li>
+                <li>Keluarga Besar Bpk. Pujianto & Ibu Sariah</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         7. TIMELINE RANGKAIAN ACARA
+         ===================================================================== -->
+    <section class="section-block" id="sec-timeline">
+        <div class="section-header reveal">
+            <span class="section-badge">Susunan Acara</span>
+            <h2 class="section-title silver-text">Wedding Timeline</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="glass-card reveal">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <strong style="font-size: 0.84rem; color: var(--pure-white);">08.00 WIB — Prosesi Akad Nikah</strong>
+                <p style="font-size: 0.77rem; color: var(--silver-light); margin-top: 3px;">Pembacaan ayat suci Al-Qur'an, ijab kabul, dan pemasangan cincin pernikahan.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <strong style="font-size: 0.84rem; color: var(--pure-white);">09.30 WIB — Sungkeman & Foto Keluarga</strong>
+                <p style="font-size: 0.77rem; color: var(--silver-light); margin-top: 3px;">Permohonan doa restu kepada kedua orang tua serta sesi foto keluarga inti.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <strong style="font-size: 0.84rem; color: var(--pure-white);">11.00 WIB — Kirab Pengantin & Resepsi</strong>
+                <p style="font-size: 0.77rem; color: var(--silver-light); margin-top: 3px;">Penyambutan tamu undangan dan jamuan makan siang bersama.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <strong style="font-size: 0.84rem; color: var(--pure-white);">14.00 WIB — Ramah Tamah & Penutup</strong>
+                <p style="font-size: 0.77rem; color: var(--silver-light); margin-top: 3px;">Sesi foto bersama sahabat, rekan kerja, dan pelepasan balon harapan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         8. UCAPAN TERIMA KASIH
+         ===================================================================== -->
+    <section class="section-block" id="sec-terimakasih">
+        <svg class="floral-corner-br" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div class="section-header reveal">
+            <span class="section-badge">Apresiasi Kami</span>
+            <h2 class="section-title silver-text">Terima Kasih</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="glass-card reveal" style="text-align: center;">
+            <i class="fa-solid fa-heart" style="color: var(--silver-light); font-size: 1.4rem; margin-bottom: 12px;"></i>
+            <p class="font-serif-editorial" style="font-size: 1.2rem; line-height: 1.65; color: var(--pure-white); margin-bottom: 14px;">
+                "Merupakan suatu kehormatan dan kebahagiaan yang tak terhingga bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu."
+            </p>
+            <p style="font-size: 0.82rem; color: var(--silver-light); line-height: 1.65; margin-bottom: 14px;">
+                Atas kehadiran, langkah kaki, serta setiap untaian doa tulus yang telah diberikan untuk awal perjalanan rumah tangga kami, kami mengucapkan terima kasih yang sebesar-besarnya.
+            </p>
+            <p style="font-size: 0.78rem; color: var(--silver-mid);">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+            <h3 class="font-cinzel silver-text" style="font-size: 1.5rem; margin-top: 10px;">Daniel & Devi</h3>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         9. DOKUMENTASI PREWEDDING
+         ===================================================================== -->
+    <section class="section-block" id="sec-prewedding">
+        <div class="section-header reveal">
+            <span class="section-badge">Galeri Momen</span>
+            <h2 class="section-title silver-text">Dokumentasi Prewedding</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="gallery-grid reveal">
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=500&q=80" alt="Prewed 1">
+                <div class="polaroid-caption">Forever Starts</div>
+            </div>
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=500&q=80" alt="Prewed 2">
+                <div class="polaroid-caption">Always Yours</div>
+            </div>
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" alt="Prewed 3">
+                <div class="polaroid-caption">Soulmates</div>
+            </div>
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" alt="Prewed 4">
+                <div class="polaroid-caption">19.12.2026</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         10. LIVE STREAMING AKAD NIKAH & LOKASI ACARA
+         ===================================================================== -->
+    <section class="section-block" id="sec-lokasi">
+        <svg class="floral-corner-tl" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div class="section-header reveal">
+            <span class="section-badge">Akses & Siaran</span>
+            <h2 class="section-title silver-text">Live Streaming & Lokasi</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <!-- Live Streaming Media Sosial -->
+        <div class="glass-card reveal">
+            <h3 style="font-size: 0.95rem; margin-bottom: 6px;"><i class="fa-solid fa-video"></i> Live Streaming Akad Nikah</h3>
+            <p style="font-size: 0.78rem; color: var(--silver-light); line-height: 1.55; margin-bottom: 12px;">
+                Bagi Bapak/Ibu/Saudara/i yang berhalangan hadir secara langsung, dapat menyaksikan prosesi Akad Nikah secara virtual melalui media sosial kami:
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <a href="https://instagram.com" target="_blank" class="btn-outline">
+                    <i class="fa-brands fa-instagram"></i> Instagram Live
+                </a>
+                <a href="https://youtube.com" target="_blank" class="btn-outline">
+                    <i class="fa-brands fa-youtube"></i> YouTube Live
+                </a>
+            </div>
+        </div>
+
+        <!-- Lokasi Acara -->
+        <div class="glass-card reveal">
+            <h3 style="font-size: 0.95rem; margin-bottom: 6px;"><i class="fa-solid fa-location-dot"></i> Lokasi Acara</h3>
+            <p style="font-size: 0.78rem; color: var(--silver-light); line-height: 1.55; margin-bottom: 12px;">
+                <strong>Radisson Golf & Convention Center</strong><br>
+                Jl. Jenderal Sudirman, Sukajadi, Kec. Batam Kota, Kota Batam, Kepulauan Riau.
+            </p>
+            <a href="https://maps.google.com/?q=Radisson+Golf+Convention+Center+Batam" target="_blank" class="btn-silver" style="width: 100%;">
+                <i class="fa-solid fa-map-location-dot"></i> Buka Google Maps
+            </a>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         11. UCAPAN & DOA (TAMPIL DI SEMUA LINK TAMU UNDANGAN)
+         ===================================================================== -->
+    <section class="section-block" id="sec-ucapan">
+        <div class="section-header reveal">
+            <span class="section-badge">Buku Tamu</span>
+            <h2 class="section-title silver-text">Ucapan & Doa Restu</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <div class="glass-card reveal">
+            <input type="text" id="wish-name" placeholder="Nama Anda">
+            <select id="wish-attendance">
+                <option value="Hadir">InsyaAllah Hadir</option>
+                <option value="Masih Ragu">Masih Ragu</option>
+                <option value="Tidak Hadir">Berhalangan Hadir</option>
+            </select>
+            <textarea id="wish-message" rows="3" placeholder="Tuliskan ucapan dan doa terbaik untuk kedua mempelai..."></textarea>
+            <button class="btn-silver" style="width: 100%;" onclick="submitWish()">
+                <i class="fa-solid fa-paper-plane"></i> Kirim Ucapan & Doa
+            </button>
+
+            <div class="wishes-list" id="wishes-container">
+                <!-- Ucapan dari seluruh link tamu tampil di sini -->
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         12. KASI HADIAH (REKENING, KONFIRMASI BUKTI TF + UCAPAN KE CLIENT, ALAMAT)
+         ===================================================================== -->
+    <section class="section-block" id="sec-hadiah" style="padding-bottom: 80px;">
+        <svg class="floral-corner-br" viewBox="0 0 140 140"><use href="#silver-floral-corner"/></svg>
+
+        <div class="section-header reveal">
+            <span class="section-badge">Tanda Kasih</span>
+            <h2 class="section-title silver-text">Kirim Hadiah</h2>
+            <div class="floral-divider"><svg width="230" height="30" viewBox="0 0 230 30"><use href="#floral-line-divider"/></svg></div>
+        </div>
+
+        <p class="reveal" style="font-size: 0.8rem; color: var(--silver-light); text-align: center; margin-bottom: 16px; line-height: 1.55;">
+            Doa restu Anda adalah karunia terindah bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat mengirimkannya melalui:
+        </p>
+
+        <!-- Rekening 1 -->
+        <div class="glass-card reveal" style="padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="letter-spacing: 1px;">BANK BCA</strong>
+                <button class="btn-outline" style="padding: 5px 12px; font-size: 0.72rem;" onclick="copyText('8210948372')">
+                    <i class="fa-regular fa-copy"></i> Salin
+                </button>
+            </div>
+            <p style="font-size: 1.2rem; font-weight: 600; margin: 6px 0 2px 0; letter-spacing: 1px;">8210 9483 72</p>
+            <p style="font-size: 0.75rem; color: var(--silver-mid);">a.n. Daniel</p>
+        </div>
+
+        <!-- Rekening 2 -->
+        <div class="glass-card reveal" style="padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="letter-spacing: 1px;">BANK MANDIRI</strong>
+                <button class="btn-outline" style="padding: 5px 12px; font-size: 0.72rem;" onclick="copyText('1090018273645')">
+                    <i class="fa-regular fa-copy"></i> Salin
+                </button>
+            </div>
+            <p style="font-size: 1.2rem; font-weight: 600; margin: 6px 0 2px 0; letter-spacing: 1px;">1090 0182 7364 5</p>
+            <p style="font-size: 0.75rem; color: var(--silver-mid);">a.n. Devi Sri Nofita</p>
+        </div>
+
+        <!-- Link Konfirmasi Transfer & Ucapan Langsung ke WhatsApp Client -->
+        <div class="glass-card reveal" style="border-color: var(--pure-white);">
+            <h4 style="font-size: 0.9rem; margin-bottom: 8px;"><i class="fa-brands fa-whatsapp"></i> Konfirmasi Bukti Transfer & Ucapan</h4>
+            <p style="font-size: 0.74rem; color: var(--silver-mid); margin-bottom: 10px;">
+                Setelah transfer, isi form singkat di bawah untuk langsung diarahkan ke WhatsApp mempelai guna melampirkan bukti transfer beserta ucapan:
+            </p>
+            <input type="text" id="tf-name" placeholder="Nama Pengirim">
+            <input type="text" id="tf-amount" placeholder="Bank Tujuan / Nominal (Contoh: BCA - Rp 500.000)">
+            <textarea id="tf-wish" rows="2" placeholder="Tulis ucapan & doa untuk mempelai..."></textarea>
+            <button class="btn-silver" style="width: 100%;" onclick="sendTransferConfirmation()">
+                <i class="fa-brands fa-whatsapp"></i> Kirim Bukti TF & Ucapan ke Daniel & Devi
+            </button>
+        </div>
+
+        <!-- Alamat Kirim Barang / Kado -->
+        <div class="glass-card reveal" style="padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="font-size: 0.88rem;"><i class="fa-solid fa-gift"></i> Alamat Kirim Kado / Barang</strong>
+                <button class="btn-outline" style="padding: 5px 12px; font-size: 0.72rem;" onclick="copyText('Jalan Kwalian Gang Damai, RT.01/RW.03, Kampung Rempak, Siak, KAB.SIAK, SIAK, RIAU, ID, 28671 (Penerima: Devi Sri Novita - 081912323513)')">
+                    <i class="fa-regular fa-copy"></i> Salin
+                </button>
+            </div>
+            <p style="font-size: 0.78rem; color: var(--silver-light); line-height: 1.55;">
+                Penerima: <strong>Devi Sri Novita (0812-3456-7890)</strong><br>
+                Perumahan Villa Panbil Blok C No. 12, Muka Kuning, Kota Batam 29433.
+            </p>
+        </div>
+
+        <p style="text-align: center; font-size: 0.72rem; color: var(--silver-mid); margin-top: 28px;">
+            Made with Love • Daniel & Devi 2026
+        </p>
+    </section>
+</div>
+
+<!-- =====================================================================
+     MODAL PANEL CLIENT: GENERATOR LINK TAMU UNDANGAN
+     ===================================================================== -->
+<div class="modal-overlay" id="client-modal">
+    <div class="modal-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 class="font-cinzel silver-text" style="font-size: 1.15rem;">Panel Client: Buat Link Tamu</h3>
+            <button class="icon-circle" onclick="toggleClientModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="glass-card">
+            <p style="font-size: 0.78rem; color: var(--silver-light); line-height: 1.5; margin-bottom: 12px;">
+                Ketik nama tamu undangan di bawah ini. Sistem akan otomatis membuatkan link khusus beserta kata pengantar WhatsApp yang siap dikirim ke masing-masing tamu.
+            </p>
+            <label style="font-size: 0.75rem; color: var(--silver-mid);">Nama Tamu Undangan:</label>
+            <input type="text" id="client-guest-input" placeholder="Contoh: Bpk. Budi Santoso & Keluarga" oninput="generateGuestLink()">
+
+            <label style="font-size: 0.75rem; color: var(--silver-mid);">Link Khusus Tamu:</label>
+            <input type="text" id="generated-url-output" readonly style="color: var(--silver-light); font-size: 0.75rem;">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+                <button class="btn-outline" onclick="copyGeneratedLink()">
+                    <i class="fa-regular fa-copy"></i> Salin Link
+                </button>
+                <button class="btn-silver" onclick="shareToWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> Kirim ke WA
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // =========================================================================
+    // TEMPELKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
+    // =========================================================================
+    const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/ISI_ID_SCRIPT_ANDA/exec";
+
+    function escapeHTML(str) {
+        return String(str).replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        }[tag]));
+    }
+
+    function renderWishes(list) {
+        const container = document.getElementById('wishes-container');
+        container.innerHTML = '';
+        list.slice().reverse().forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'wish-item';
+            div.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <strong style="font-size:0.8rem; color:#fff;">${escapeHTML(item.name)}</strong>
+                    <span style="font-size:0.65rem; padding:2px 8px; border-radius:10px; background:rgba(255,255,255,0.12); color:#CBD5E1;">${escapeHTML(item.status)}</span>
+                </div>
+                <p style="font-size:0.76rem; color:#E2E8F0; line-height:1.45;">${escapeHTML(item.message)}</p>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    // Mengambil semua ucapan dari Google Sheets saat undangan dibuka
+    async function loadWishesFromSheet() {
+        if (GOOGLE_SHEET_URL.includes("ISI_ID_SCRIPT_ANDA")) return;
+        try {
+            const response = await fetch(GOOGLE_SHEET_URL);
+            const data = await response.json();
+            renderWishes(data);
+        } catch (error) {
+            console.error("Gagal memuat ucapan:", error);
+        }
+    }
+
+    // Mengirim ucapan baru ke Google Sheets
+    window.submitWish = async function() {
+        const name = document.getElementById('wish-name').value.trim();
+        const status = document.getElementById('wish-attendance').value;
+        const message = document.getElementById('wish-message').value.trim();
+
+        if (!name || !message) {
+            showToast("Mohon isi nama dan ucapan terlebih dahulu.");
+            return;
+        }
+
+        showToast("Mengirim ucapan...");
+
+        try {
+            await fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, status, message })
+            });
+
+            document.getElementById('wish-message').value = '';
+            showToast("Terima kasih! Ucapan Anda telah tersimpan.");
+
+            // Muat ulang daftar ucapan setelah 1,5 detik
+            setTimeout(loadWishesFromSheet, 1500);
+        } catch (error) {
+            showToast("Terjadi kesalahan saat mengirim ucapan.");
+        }
+    };
+
+    // Jalankan saat halaman pertama kali dibuka
+    loadWishesFromSheet();
+</script>
+
+<script>
+    // =========================================================================
+    // NOMOR WHATSAPP CLIENT (Untuk Menerima Bukti Transfer & Ucapan Kado)
+    // Gunakan format 628xxx tanpa spasi atau tanda +
+    // =========================================================================
+    const CLIENT_WHATSAPP_NUMBER = "6287802555057";
+
+    // 1. Membaca Nama Tamu dari Parameter URL (?to=Nama+Tamu)
+const urlParams = new URLSearchParams(window.location.search);
+const guestParam = urlParams.get('to');
+if (guestParam) {
+    document.getElementById('guest-name-display').textContent = guestParam;
+    document.getElementById('wish-name').value = guestParam;
+    document.getElementById('tf-name').value = guestParam;
+}
+
+// TAMBAHKAN KODE INI: Munculkan tombol Panel Client HANYA jika URL memakai ?admin=1
+if (urlParams.get('admin') === '1') {
+    document.getElementById('client-panel-btn').style.display = 'flex';
+}
+
+    // 2. Buka Undangan -> Membuka kunci scroll ke bawah & memutar musik
+    function openInvitation() {
+        document.getElementById('sec-cover').classList.add('opened');
+        document.body.classList.remove('locked');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        createFallingPetals();
+
+        const music = document.getElementById('bg-music');
+        music.play().then(() => {
+            document.getElementById('music-icon').classList.add('spin');
+        }).catch(() => {});
+    }
+
+    // 3. Animasi Kelopak Bunga Jatuh
+    function createFallingPetals() {
+        for (let i = 0; i < 12; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (7 + Math.random() * 6) + 's';
+            petal.style.animationDelay = (Math.random() * 5) + 's';
+            document.body.appendChild(petal);
+        }
+    }
+
+    // 4. Animasi Muncul Saat Digulir ke Bawah (Scroll Reveal)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 5. Kontrol Musik
+    function toggleMusic() {
+        const music = document.getElementById('bg-music');
+        const icon = document.getElementById('music-icon');
+        if (music.paused) {
+            music.play();
+            icon.classList.add('spin');
+        } else {
+            music.pause();
+            icon.classList.remove('spin');
+        }
+    }
+
+    // 6. Countdown Timer (19 Desember 2026)
+    const targetDate = new Date("December 19, 2026 08:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        if (diff > 0) {
+            document.getElementById('cd-days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('cd-hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('cd-mins').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('cd-secs').textContent = Math.floor((diff % (1000 * 60)) / 1000);
+        }
+    }, 1000);
+
+    // 7. Salin Teks
+    function copyText(text) {
+        navigator.clipboard.writeText(text);
+        showToast("Berhasil disalin!");
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // 8. Kirim Bukti Transfer & Ucapan Langsung ke WhatsApp Client
+    function sendTransferConfirmation() {
+        const name = document.getElementById('tf-name').value.trim() || "Tamu Undangan";
+        const amount = document.getElementById('tf-amount').value.trim() || "-";
+        const wish = document.getElementById('tf-wish').value.trim() || "Selamat menempuh hidup baru!";
+
+        const text = `Halo Daniel & Devi,%0A%0ASaya *${encodeURIComponent(name)}* ingin mengirimkan tanda kasih pernikahan:%0A• Keterangan/Nominal: *${encodeURIComponent(amount)}*%0A• Ucapan & Doa: _"${encodeURIComponent(wish)}"_%0A%0ABerikut saya lampirkan bukti transfernya.`;
+        window.open(`https://wa.me/${CLIENT_WHATSAPP_NUMBER}?text=${text}`, '_blank');
+    }
+
+    // 9. Panel Client: Generator Link Tamu & Share WhatsApp
+    function toggleClientModal() {
+        const modal = document.getElementById('client-modal');
+        modal.classList.toggle('open');
+        if (modal.classList.contains('open')) generateGuestLink();
+    }
+
+    function generateGuestLink() {
+        const guestName = document.getElementById('client-guest-input').value.trim();
+        const baseUrl = window.location.origin + window.location.pathname;
+        const fullUrl = guestName ? `${baseUrl}?to=${encodeURIComponent(guestName)}` : baseUrl;
+        document.getElementById('generated-url-output').value = fullUrl;
+    }
+
+    function copyGeneratedLink() {
+        const url = document.getElementById('generated-url-output').value;
+        navigator.clipboard.writeText(url);
+        showToast("Link tamu berhasil disalin!");
+    }
+
+    function shareToWhatsApp() {
+        const guestName = document.getElementById('client-guest-input').value.trim() || "Bapak/Ibu/Saudara/i";
+        const url = document.getElementById('generated-url-output').value;
+        const message = `Kepada Yth.%0A*${encodeURIComponent(guestName)}*%0A%0ATanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami:%0A%0A*Daniel & Devi*%0ARabu, 27 Mei 1017%0A%0AInfo lengkap & lokasi acara dapat diakses melalui tautan berikut:%0A${encodeURIComponent(url)}%0A%0AMerupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir. Terima kasih.`;
+        window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
+    }
+</script>
+</body>
+</html>
