@@ -937,8 +937,8 @@
             <input type="text" id="tf-amount" placeholder="Bank Tujuan / Nominal (Contoh: BCA - Rp 500.000)">
             <textarea id="tf-wish" rows="2" placeholder="Tulis ucapan & doa untuk mempelai..."></textarea>
             <button class="btn-silver" style="width: 100%;" onclick="sendTransferConfirmation()">
-                <i class="fa-brands fa-whatsapp"></i> Kirim Bukti TF & Ucapan ke Daniel & Devi
-            </button>
+                <i class="fa-brands fa-whatsapp"></i> Kirim Bukti TF & Ucapan ke Client
+        </button>
         </div>
 
         <!-- Alamat Kirim Barang / Kado -->
@@ -1168,13 +1168,25 @@ if (urlParams.get('admin') === '1') {
 
     // 8. Kirim Bukti Transfer & Ucapan Langsung ke WhatsApp Client
     function sendTransferConfirmation() {
-        const name = document.getElementById('tf-name').value.trim() || "Tamu Undangan";
-        const amount = document.getElementById('tf-amount').value.trim() || "-";
-        const wish = document.getElementById('tf-wish').value.trim() || "Selamat menempuh hidup baru!";
+    const nameEl = document.getElementById('tf-name');
+    const amountEl = document.getElementById('tf-amount');
+    const wishEl = document.getElementById('tf-wish');
 
-        const text = `Halo Daniel & Devi,%0A%0ASaya *${encodeURIComponent(name)}* ingin mengirimkan tanda kasih pernikahan:%0A• Keterangan/Nominal: *${encodeURIComponent(amount)}*%0A• Ucapan & Doa: _"${encodeURIComponent(wish)}"_%0A%0ABerikut saya lampirkan bukti transfernya.`;
-        window.open(`https://wa.me/${CLIENT_WHATSAPP_NUMBER}?text=${text}`, '_blank');
-    }
+    const name = (nameEl && nameEl.value.trim()) ? nameEl.value.trim() : "Tamu Undangan";
+    const amount = (amountEl && amountEl.value.trim()) ? amountEl.value.trim() : "-";
+    const wish = (wishEl && wishEl.value.trim()) ? wishEl.value.trim() : "Selamat menempuh hidup baru!";
+
+    // Susun pesan utuh terlebih dahulu lalu encode seluruhnya agar karakter '&' atau enter tidak memotong pesan
+    const fullMessage = 
+        `Halo Daniel & Pasangan,\n\n` +
+        `Saya *${name}* ingin mengirimkan tanda kasih pernikahan:\n` +
+        `• Keterangan/Nominal: *${amount}*\n` +
+        `• Ucapan & Doa: _"${wish}"_\n\n` +
+        `Berikut saya lampirkan bukti transfernya.`;
+
+    const encodedText = encodeURIComponent(fullMessage);
+    window.open(`https://api.whatsapp.com/send?phone=${CLIENT_WHATSAPP_NUMBER}&text=${encodedText}`, '_blank');
+}
 
     // 9. Panel Client: Generator Link Tamu & Share WhatsApp
     function toggleClientModal() {
